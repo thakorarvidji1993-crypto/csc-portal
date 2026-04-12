@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Admin Panel</h2>
+<button onclick="showUsers()">Show Users</button>
+
+<ul id="userList"></ul>
+
+<script>
+function showUsers(){
+ let users = JSON.parse(localStorage.getItem('users')||'[]');
+ let list = document.getElementById('userList');
+ list.innerHTML = '';
+
+ users.forEach(u=>{
+   list.innerHTML += `<li>${u.name} - ${u.email}</li>`;
+ });
+}
+</script>
+</body>
+</html>
