@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Document</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+}
+
+/* Container */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+/* Upload Box */
+.upload-box {
+    border: 2px dashed #28a745;
+    padding: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-box:hover {
+    background: #f0fff4;
+}
+
+/* Preview */
+.preview img {
+    width: 100px;
+    margin-top: 15px;
+    border-radius: 6px;
+}
+
+/* Progress Bar */
+.progress {
+    width: 100%;
+    background: #ddd;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    display: none;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #28a745, #ffc107);
+    border-radius: 5px;
+}
+
+/* Button */
+.btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    background: linear-gradient(90deg, #28a745, #ffc107);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.success {
+    margin-top: 15px;
+    color: green;
+    display: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Upload Document</h2>
+
+    <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+        <p>📂 Click or Drag & Drop File</p>
+        <input type="file" id="fileInput" hidden>
+    </div>
+
+    <div class="preview" id="preview"></div>
+
+    <div class="progress" id="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <button class="btn" onclick="uploadFile()">Upload</button>
+
+    <div class="success" id="successMsg">
+        ✅ File Uploaded Successfully!
+    </div>
+</div>
+
+<script>
+const fileInput = document.getElementById("fileInput");
+const preview = document.getElementById("preview");
+
+fileInput.addEventListener("change", function(){
+    const file = this.files[0];
+
+    if(file){
+        // Validation (Max 2MB)
+        if(file.size > 2 * 1024 * 1024){
+            alert("File too large (Max 2MB)");
+            return;
+        }
+
+        // Preview Image
+        const reader = new FileReader();
+        reader.onload = function(e){
+            preview.innerHTML = `<img src="${e.target.result}">`;
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+function uploadFile(){
+    const progress = document.getElementById("progress");
+    const progressBar = document.getElementById("progressBar");
+    const successMsg = document.getElementById("successMsg");
+
+    progress.style.display = "block";
+
+    let width = 0;
+    const interval = setInterval(() => {
+        if(width >= 100){
+            clearInterval(interval);
+            successMsg.style.display = "block";
+        } else {
+            width++;
+            progressBar.style.width = width + "%";
+        }
+    }, 20);
+}
+</script>
+
+</body>
+</html>
