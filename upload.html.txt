@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Upload Documents</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+}
+
+/* Top Bar */
+.topbar {
+    background: #5a3fc0;
+    height: 8px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header-left h2 {
+    font-size: 18px;
+}
+
+/* Layout */
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: #fff;
+    height: calc(100vh - 60px);
+    border-right: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #f0f0f0;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Upload Box */
+.upload-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.upload-box h3 {
+    margin-bottom: 15px;
+}
+
+/* Inputs */
+.input-box {
+    margin-bottom: 12px;
+}
+
+.input-box input,
+.input-box select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 10px;
+    background: #5a3fc0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #432ea0;
+}
+
+/* Preview */
+.preview {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #555;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background: #5a3fc0;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar"></div>
+
+<div class="header">
+    <div class="header-left">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Election_Commission_of_India_Logo.svg">
+        <h2>Shri Krishna Digital Seva Sadan</h2>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="dashboard.html">🏠 Dashboard</a>
+        <a href="apply.html">📝 Apply Service</a>
+        <a href="#">📄 My Applications</a>
+        <a href="#">💳 Payment</a>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+
+        <div class="upload-box">
+            <h3>Upload Documents</h3>
+
+            <div class="input-box">
+                <select id="docType">
+                    <option>Select Document Type</option>
+                    <option>Aadhar Card</option>
+                    <option>Address Proof</option>
+                    <option>Photo</option>
+                </select>
+            </div>
+
+            <div class="input-box">
+                <input type="file" id="file" onchange="previewFile()">
+            </div>
+
+            <div class="preview" id="preview"></div>
+
+            <button class="btn" onclick="uploadDoc()">Upload Document</button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    © 2026 Shri Krishna Digital Seva Sadan
+</div>
+
+<script>
+function previewFile() {
+    let file = document.getElementById("file").files[0];
+    if (file) {
+        document.getElementById("preview").innerText =
+            "Selected: " + file.name;
+    }
+}
+
+function uploadDoc() {
+    let docType = document.getElementById("docType").value;
+    let file = document.getElementById("file").files[0];
+
+    if (docType === "Select Document Type" || !file) {
+        alert("Please select document and file");
+        return;
+    }
+
+    alert("Document Uploaded Successfully");
+
+    // 👉 Next Step (Payment Page)
+    window.location.href = "payment.html";
+}
+</script>
+
+</body>
+</html>

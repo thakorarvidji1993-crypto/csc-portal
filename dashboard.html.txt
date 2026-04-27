@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Customer Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+}
+
+/* Top Bar */
+.topbar {
+    background: #5a3fc0;
+    height: 8px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header-left h2 {
+    font-size: 18px;
+}
+
+/* Logout */
+.logout {
+    background: #5a3fc0;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Dashboard Layout */
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: #fff;
+    height: calc(100vh - 60px);
+    border-right: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #f0f0f0;
+}
+
+/* Main Content */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card h3 {
+    margin: 0;
+    color: #5a3fc0;
+}
+
+/* Table */
+.table {
+    margin-top: 30px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #f4f4f4;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background: #5a3fc0;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar"></div>
+
+<div class="header">
+    <div class="header-left">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Election_Commission_of_India_Logo.svg">
+        <h2>Shri Krishna Digital Seva Sadan</h2>
+    </div>
+
+    <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#">🏠 Dashboard</a>
+        <a href="apply.html">📝 Apply Service</a>
+        <a href="#">📄 My Applications</a>
+        <a href="#">💳 Payment</a>
+        <a href="#">⚙ Settings</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <h2>Welcome, User 👋</h2>
+
+        <!-- Cards -->
+        <div class="cards">
+            <div class="card">
+                <h3>5</h3>
+                <p>Total Applications</p>
+            </div>
+
+            <div class="card">
+                <h3>2</h3>
+                <p>Pending</p>
+            </div>
+
+            <div class="card">
+                <h3>2</h3>
+                <p>Approved</p>
+            </div>
+
+            <div class="card">
+                <h3>1</h3>
+                <p>Rejected</p>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table">
+            <h3>Recent Applications</h3>
+
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Service</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>101</td>
+                    <td>New Voter ID</td>
+                    <td style="color:orange;">Pending</td>
+                </tr>
+
+                <tr>
+                    <td>102</td>
+                    <td>Address Update</td>
+                    <td style="color:green;">Approved</td>
+                </tr>
+
+                <tr>
+                    <td>103</td>
+                    <td>Name Correction</td>
+                    <td style="color:red;">Rejected</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    © 2026 Shri Krishna Digital Seva Sadan
+</div>
+
+<script>
+function logout() {
+    alert("Logged Out");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
+<h3 id="totalApps">0</h3>
+<h3 id="pendingApps">0</h3>
+<h3 id="approvedApps">0</h3>
+<h3 id="rejectedApps">0</h3>

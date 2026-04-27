@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - Shri Krishna Digital Seva</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e6edf5;
+}
+
+/* Top Bar */
+.topbar {
+    background: #5a3fc0;
+    height: 8px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.header img {
+    height: 45px;
+    margin-right: 10px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Main */
+.main {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+/* Left Logo */
+.left-logo {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-logo img {
+    width: 250px;
+}
+
+/* Login Box */
+.login-box {
+    width: 320px;
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.login-box h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Inputs */
+.input-box {
+    margin-bottom: 12px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Captcha */
+.captcha {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.captcha-box {
+    background: #fff;
+    padding: 8px 15px;
+    font-family: monospace;
+    font-size: 18px;
+    border: 1px solid #ccc;
+}
+
+.refresh {
+    cursor: pointer;
+    color: orange;
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 10px;
+    background: #5a3fc0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #432ea0;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #5a3fc0;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar"></div>
+
+<div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Election_Commission_of_India_Logo.svg">
+    <h2>Shri Krishna Digital Seva Sadan</h2>
+</div>
+
+<div class="main">
+
+    <div class="left-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Election_Commission_of_India_Logo.svg">
+    </div>
+
+    <div class="login-box">
+        <h3>Login</h3>
+
+        <div class="input-box">
+            <input type="text" id="mobile" placeholder="Enter Mobile Number *" maxlength="10">
+        </div>
+
+        <div class="captcha">
+            <div class="captcha-box" id="captcha"></div>
+            <div class="refresh" onclick="generateCaptcha()">⟳</div>
+        </div>
+
+        <div class="input-box">
+            <input type="text" placeholder="Enter Captcha *" id="userCaptcha">
+        </div>
+
+        <button class="btn" onclick="login()">SEND OTP</button>
+    </div>
+
+</div>
+
+<div class="footer">
+    Copyright 2026. All Rights Reserved.
+</div>
+
+<script>
+let captchaText = "";
+
+/* Generate Captcha */
+function generateCaptcha() {
+    let chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    captchaText = "";
+    for (let i = 0; i < 6; i++) {
+        captchaText += chars[Math.floor(Math.random() * chars.length)];
+    }
+    document.getElementById("captcha").innerText = captchaText;
+}
+
+/* Login */
+function login() {
+    let mobile = document.getElementById("mobile").value;
+    let userCaptcha = document.getElementById("userCaptcha").value;
+
+    if (mobile.length !== 10 || isNaN(mobile)) {
+        alert("Enter valid mobile number");
+        return;
+    }
+
+    if (userCaptcha !== captchaText) {
+        alert("Invalid Captcha");
+        generateCaptcha();
+        return;
+    }
+
+    alert("OTP Sent Successfully");
+
+    // 👉 Next Page
+    window.location.href = "otp.html";
+}
+
+generateCaptcha();
+</script>
+
+</body>
+</html>
